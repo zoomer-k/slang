@@ -52,5 +52,15 @@ jobs:
       run: cmake --build build/${{ matrix.preset }} -j8
     - name: Run tests
       run: ctest --test-dir build/${{ matrix.preset }} --output-on-failure --no-tests=error -j8
+    - name: Archive binaries
+      if: matrix.os == 'windows-latest'
+      run: |
+        Compress-Archive $HOME/slang/ slang-windows.zip
+    - name: Upload artifacts
+      if: matrix.os == 'windows-latest'
+      uses: actions/upload-artifact@v2
+      with:
+        name: SLANG_ARTIFACT_WIN
+        path: slang-windows.zip
 
 
