@@ -55,7 +55,7 @@ jobs:
     - name: Archive binaries
       if: matrix.os == 'windows-latest'
       run: |
-        Compress-Archive $HOME/slang/ slang-windows.zip
+        Compress-Archive build/${{ matrix.preset }} slang-windows.zip
     - name: Upload artifacts
       if: matrix.os == 'windows-latest'
       uses: actions/upload-artifact@v2
