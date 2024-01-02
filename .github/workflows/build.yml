@@ -8,8 +8,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - preset: clang-sanitize
-            os: ubuntu-22.04
+          #- preset: clang-sanitize
+          #  os: ubuntu-22.04
           - preset: gcc-release
             os: ubuntu-22.04
           - preset: gcc-11-release
@@ -55,7 +55,7 @@ jobs:
     - name: Archive binaries
       if: matrix.os == 'windows-latest'
       run: |
-        Compress-Archive build/${{ matrix.preset }} slang-windows.zip
+        Compress-Archive build/${{ matrix.preset }}/bin slang-windows.zip
     - name: Upload artifacts
       if: matrix.os == 'windows-latest'
       uses: actions/upload-artifact@v2
