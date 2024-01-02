@@ -53,11 +53,11 @@ jobs:
     - name: Run tests
       run: ctest --test-dir build/${{ matrix.preset }} --output-on-failure --no-tests=error -j8
     - name: Archive binaries
-      if: matrix.prset == 'win64-release'
+      if: matrix.preset == 'win64-release'
       run: |
         Compress-Archive build/${{ matrix.preset }}/bin slang-windows.zip
     - name: Upload artifacts
-      if: matrix.prset == 'win64-release'
+      if: matrix.preset == 'win64-release'
       uses: actions/upload-artifact@v3
       with:
         name: SLANG_ARTIFACT_WIN
